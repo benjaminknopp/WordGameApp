@@ -1,6 +1,6 @@
 # WordGameApp
 
-### Description
+## Description
 
 In this app, you can search for anagrams of a word. It's a small project to familiarize myself with C# and WPF.
 
@@ -31,7 +31,7 @@ To run the WordGameApp, you will need:
 
 1. **Clone or download this repository**:
     ```bash
-    git clone https://github.com/yourusername/WordGameApp.git
+    git clone https://github.com/benjaminknopp/WordGameApp.git
     ```
 2. **Open the solution in Visual Studio**.
   
@@ -45,11 +45,6 @@ To run the WordGameApp, you will need:
    - Generate all permutations of the word.
    - Filter valid permutations based on the words present in the `wortliste.txt` file.
    - Display the valid words in a message box.
-
-### File Structure
-- **MainWindow.xaml**: Defines the UI layout.
-- **MainWindow.xaml.cs**: Contains the logic for the application, including methods to read the dictionary file, generate permutations, and filter results.
-- **PermutationHelper.cs**: (Optional, if implemented) A static helper class responsible for generating word permutations.
 
 ---
 

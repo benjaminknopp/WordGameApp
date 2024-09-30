@@ -23,29 +23,23 @@ namespace WordGameApp
             // Woerterbuch von hier: https://github.com/davidak/wortliste
             var uri = new Uri("/wortliste.txt", UriKind.Relative);
             var resourceStream = Application.GetResourceStream(uri);
-            try
+
+            StreamReader sr = new(resourceStream.Stream);
+            line = sr.ReadLine();
+            while (line != null)
             {
-                StreamReader sr = new(resourceStream.Stream);
-                line = sr.ReadLine();
-                while (line != null)
+                if (dictionary.TryGetValue(line.ToLower(), out var lst))
                 {
-                    if (dictionary.TryGetValue(line.ToLower(), out var lst))
-                    {
-                        lst.Add(line);
-                    }
-                    else
-                    {
-                        dictionary.Add(line.ToLower(), [line]);
-                    }
-                    line = sr.ReadLine();
+                    lst.Add(line);
                 }
-                sr.Close();
-                Console.ReadLine();
+                else
+                {
+                    dictionary.Add(line.ToLower(), [line]);
+                }
+                line = sr.ReadLine();
             }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Konnte die Wörterbuch Datei nicht finden: {e.Message}. Zeige alle Permutationen.");
-            }
+            sr.Close();
+
             return dictionary;
         }
 
@@ -68,10 +62,9 @@ namespace WordGameApp
             var dictionary = ReadDictionary();
             List<string> proposals = Arrange(sLower);
             List<string> filteredList = [];
-            bool noDict = dictionary == null;
             foreach (string word in proposals)
             {
-                if (!noDict && dictionary.TryGetValue(word, out var value))
+                if (dictionary != null && dictionary.TryGetValue(word, out var value))
                 {
                     foreach (string variant in value)
                     {

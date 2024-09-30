@@ -1,15 +1,5 @@
-﻿using System.Text;
+﻿using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.IO;
-using System.Diagnostics;
 
 namespace WordGameApp
 {
@@ -31,7 +21,7 @@ namespace WordGameApp
             var uri = new Uri("/wortliste.txt", UriKind.Relative);
             var resourceStream = Application.GetResourceStream(uri);
             try
-            {                
+            {
                 StreamReader sr = new StreamReader(resourceStream.Stream);
                 line = sr.ReadLine();
                 while (line != null)
@@ -71,7 +61,8 @@ namespace WordGameApp
             bool noDict = dictionary == null;
             foreach (string word in proposals)
             {
-                if (!noDict && dictionary.Keys.Contains(word)) {
+                if (!noDict && dictionary.Keys.Contains(word))
+                {
                     foreach (string variant in dictionary[word])
                     {
                         if (!filteredList.Contains(variant))
@@ -89,10 +80,11 @@ namespace WordGameApp
             if (s == "")
             {
                 return [""];
-            } else
+            }
+            else
             {
                 return InsertEverywhere(s[0], _Arrange(s.Substring(1)));
-            }    
+            }
         }
 
         private static List<string> InsertEverywhere(char a, List<string> words)

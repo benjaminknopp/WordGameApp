@@ -60,7 +60,7 @@ namespace WordGameApp
         {
             string sLower = s.ToLower();
             var dictionary = ReadDictionary();
-            List<string> proposals = Arrange(sLower);
+            List<string> proposals = PermutationHelper.Arrange(sLower);
             List<string> filteredList = [];
             foreach (string word in proposals)
             {
@@ -77,13 +77,16 @@ namespace WordGameApp
             }
             return string.Join("\n", filteredList);
         }
+    }
 
+    public static class PermutationHelper
+    { 
         /// <summary>
         /// Recursively generates all permutations of the given string.
         /// </summary>
         /// <param name="input">The string to permute.</param>
         /// <returns>A list of all possible permutations.</returns>
-        private static List<string> Arrange(string s)
+        public static List<string> Arrange(string s)
         {
             if (s == "")
             {
